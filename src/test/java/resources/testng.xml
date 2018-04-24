@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Despegar suite">
+    <parameter name="from"  value="Caracas"/>
+    <parameter name="to"  value="Argentina"/>
+    <parameter name="month-from"  value="6"/>
+    <parameter name="day-from"  value="7"/>
+    <parameter name="month-to"  value="8"/>
+    <parameter name="day-to"  value="2"/>
+    <test name="Search Flight Test">
+        <classes>
+            <class name="EvaluationTests" />
+        </classes>
+    </test>
+</suite>

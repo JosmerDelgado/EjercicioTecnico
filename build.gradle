@@ -1,0 +1,22 @@
+group 'Selenium-Despegar'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.11.0'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+
+}
+test {
+    useTestNG(){
+        suites("src/test/resources/java/resources/testng.xml")
+    }
+}
