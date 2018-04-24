@@ -33,8 +33,6 @@ public class Page {
 
     public void searchFlight(String fromDestination, String toDestination,
                              String monthFrom, String dayFrom, String monthTo, String dayTo){
-        System.out.println(fromDestination + ", " + toDestination + ", " + monthFrom + ", " + dayFrom
-                + ", " + monthTo + ", " + dayTo);
 
         homePage.waitAndClickFlightTab().waitAndTypeFromLocation(fromDestination)
                 .waitAndTypeToLocation(toDestination).waitAndClickCheckInDate().selectDate(monthFrom,dayFrom)

@@ -1,5 +1,6 @@
 # EjercicioTecnico
 **Herramientas Utilizadas:**
+- Gradle
 - TestNG
 - SeleniumHQ
 
