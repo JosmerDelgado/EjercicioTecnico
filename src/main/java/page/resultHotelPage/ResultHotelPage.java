@@ -1,5 +1,6 @@
 package page.resultHotelPage;
 
+import core.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,7 @@ public class ResultHotelPage {
     }
 
     public ResultHotelPage waitUntilIsCharged(){
+        MyLogger.log.info("Waiting Result page is fully loaded");
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         return this;
     }
@@ -37,11 +39,11 @@ public class ResultHotelPage {
     }
 
     public void findLowestPrice(){
+        MyLogger.log.info("Finding the lowest Price");
         int lowest, elementNumber=0;
         wait.until(ExpectedConditions.visibilityOfElementLocated(priceContainers));
         List<WebElement> pricesElements = driver.findElements(priceContainers);
         String text = pricesElements.get(0).getText().replace(".","").replace("$ ","");
-        System.out.println("Number Text: "+text);
         lowest = Integer.parseInt(text);
         for(int i = 1 ; i < pricesElements.size(); i++){
             int actualInt = Integer.parseInt(pricesElements.get(i-1).getText().replace(".","")
@@ -51,11 +53,11 @@ public class ResultHotelPage {
                 elementNumber=i-1;
             }
         }
-        System.out.println(elementNumber +" highest Element "+ lowest);
         driver.findElements(detailsContainers).get(elementNumber).click();
     }
 
     private ResultHotelPage waitAndClick(By elementLocation){
+        MyLogger.log.info("Waiting for the element " + elementLocation.toString() + " to be clicked.");
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocation));
         driver.findElement(elementLocation).click();
         return this;

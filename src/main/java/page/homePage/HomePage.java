@@ -1,16 +1,13 @@
 package page.homePage;
 
+import core.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.Page;
-import page.resultPage.ResultPage;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -71,12 +68,13 @@ public class HomePage {
     }
 
     private HomePage hotelDatePicker(int i) {
+
+        MyLogger.log.info("Selecting day " + i);
         String month,day;
         Calendar newDate = addDays(i);
         month = String.valueOf(newDate.get(Calendar.MONTH) + 1);
         day = String.valueOf(newDate.get(Calendar.DAY_OF_MONTH));
 
-        System.out.println("month: " +month + " day :"+ day);
         selectDate(month,day);
         return this;
     }
@@ -102,6 +100,7 @@ public class HomePage {
     }
 
     public HomePage waitAndSelectAge(){
+        MyLogger.log.info("Waiting for the visibility of age combo, selecting 12 años ");
         wait.until(ExpectedConditions.visibilityOfElementLocated(selectMinorAge));
         WebElement selectMinorElement = driver.findElement(selectMinorAge);
         Select dropdown = new Select(selectMinorElement);
@@ -140,13 +139,14 @@ public class HomePage {
     }
 
     public HomePage selectDate(String month, String day){
+        MyLogger.log.info("Selecting date, Month: " + month + " and day: "+ day);
         int steps;
         int currentMonthInt;
         int monthInt = Integer.parseInt(month);
         wait.until(ExpectedConditions.visibilityOfElementLocated(dateSelector));
         WebElement currentMonthElement = driver.findElements(monthActive).get(0);
         String currentMonth = currentMonthElement.getAttribute("data-month").split("-")[1];
-        System.out.println(currentMonth);
+
         currentMonthInt = Integer.parseInt(currentMonth);
         monthInt = monthInt < currentMonthInt ? monthInt + 12 : monthInt;
         steps = monthInt - currentMonthInt;
@@ -177,12 +177,14 @@ public class HomePage {
     }
 
     private HomePage waitAndClick(By elementLocation){
+        MyLogger.log.info("Waiting for the element" + elementLocation.toString() + " to be clicked");
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocation));
         driver.findElement(elementLocation).click();
         return this;
     }
 
     private HomePage waitAndType(String location, By elementLocation) {
+        MyLogger.log.info("Waiting for the element" + elementLocation.toString() + " to type into");
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocation));
         WebElement element =driver.findElement(elementLocation);
         element.clear();

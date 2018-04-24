@@ -1,5 +1,6 @@
 package page.buyingPage;
 
+import core.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,6 +38,7 @@ public class BuyingPage {
     }
 
     private Boolean verifyElement(By element){
+        MyLogger.log.info("Verifiying the existence of the Element " + element.toString());
         return driver.findElements(element).size() != 0;
     }
 

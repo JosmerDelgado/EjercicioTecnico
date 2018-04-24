@@ -1,5 +1,6 @@
 package page.hotelRoomTab;
 
+import core.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,7 @@ public class HotelRoomTab {
     }
 
     public Boolean waitAndVerifyRoomSection(){
+        MyLogger.log.info("Waiting for the Room Section");
         wait.until(ExpectedConditions.visibilityOfElementLocated(roomSection));
         return driver.findElements(roomSection).size() > 0;
     }

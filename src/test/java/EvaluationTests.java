@@ -1,3 +1,5 @@
+import core.MyLogger;
+import org.apache.log4j.Level;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -7,7 +9,7 @@ import web.Web;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 /**
  * Created by josmer on 18/04/2018.
@@ -16,9 +18,10 @@ public class EvaluationTests {
     private static WebDriver driver = null;
     private static Page page;
 
+
     @BeforeMethod
     public void setUpDriver(){
-        System.out.println("Before Test");
+        MyLogger.log.setLevel(Level.DEBUG);
         this.driver = Web.remoteWeb();
         this.page= new Page(driver);
         driver.get(page.startURL());
@@ -28,9 +31,8 @@ public class EvaluationTests {
 
     @AfterMethod
     public void tierDown(){
-        System.out.println("After Test");
-//        driver.close();
-//        driver.quit();
+        driver.close();
+        driver.quit();
     }
 
     @Parameters({ "from", "to", "month-from", "day-from", "month-to", "day-to" })

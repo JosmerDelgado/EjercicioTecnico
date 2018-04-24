@@ -1,5 +1,6 @@
 package page.resultPage;
 
+import core.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,6 +39,7 @@ public class ResultPage {
     }
 
     public void waitAndClickExpensiveTrip(){
+        MyLogger.log.info("Selecting the Expensive Trip");
         int highest, elementNumber=0;
         List<WebElement> pricesElements = driver.findElements(priceElements);
         String text = pricesElements.get(0).getText().replace(".","");
@@ -54,6 +56,7 @@ public class ResultPage {
     }
 
     private void waitAndClick(By elementLocation){
+        MyLogger.log.info("Waiting for the element " + elementLocation.toString() + " to be clicked.");
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocation));
         driver.findElement(elementLocation).click();
     }
