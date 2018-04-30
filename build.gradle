@@ -17,6 +17,16 @@ dependencies {
 }
 test {
     useTestNG(){
-        suites("src/test/resources/java/resources/testng.xml")
+        suites 'src/test/java/resources/testng.xml'
     }
+}
+
+task runTests(type: JavaExec, dependsOn: 'classes') {
+    main = 'org.testng.TestNG'
+    classpath = files("./src/test/java/resources",
+            project.sourceSets.main.compileClasspath,
+            project.sourceSets.test.compileClasspath,
+            project.sourceSets.main.runtimeClasspath,
+            project.sourceSets.test.runtimeClasspath)
+    args = ["-parallel",  "methods", "-threadcount", "1", "-d", "./build/test-output", "./src/test/java/resources/testng.xml"]
 }

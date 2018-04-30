@@ -20,7 +20,7 @@ Se deben editar los parametros del archivo testng.xml con los parametros deseado
 
 **Como Ejecutar**
 - Se debe utilizar testng y ejecutar el archivo testng.xml
-
+Via terminal `./gradlew runTests`
 
 
 # Descripcion Funcional
